@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="id">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <meta name="title" content="Finance Pro - Aplikasi Manajemen Keuangan Pribadi">
+        <meta name="description" content="Kelola pemasukan, pengeluaran, dan pantau analitik keuangan Anda secara real-time dengan Finance Pro. Aman, cepat, dan gratis.">
+        <meta name="keywords" content="catatan keuangan, aplikasi budget, manajemen uang, kalkulator pengeluaran, finance tracker">
+        <meta name="author" content="Endi">
+        
+        <!-- Warna Bar Browser (Theme Color) -->
+        <meta name="theme-color" content="#6366f1">
+        <meta name="msapplication-navbutton-color" content="#6366f1">
+        
+        <!-- Khusus iOS (Safari) -->
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <meta name="apple-mobile-web-app-title" content="Finance Pro">
+        
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="https://financepro.ct.ws/">
+        <meta property="og:title" content="Finance Pro - Solusi Cerdas Kelola Uang">
+        <meta property="og:description" content="Pantau arus kas harian Anda dengan grafik intuitif dan laporan ekspor PDF/Excel.">
+        <meta property="og:image" content="favicon/android-chrome-512x512.png">
+        <meta property="twitter:card" content="summary_large_image">
+        <meta property="twitter:title" content="Finance Pro">
+        <meta property="twitter:description" content="Manajemen keuangan pribadi jadi lebih mudah dalam genggaman.">
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css">
+        <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="style.css" type="text/css" media="all" />
+        
+        <!-- Ikon untuk Home Screen (Web App Icon) -->
+        <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+        <link rel="manifest" href="https://gist.githubusercontent.com/aingendi-dev/43130cafd14223d28fcf7ac540eccb78/raw/a9ab62856325a6260868d0deb61bde64ab033a64/financepro-manifest.json" crossorigin="use-credentials">
+        
+        <title>Finance Pro - Aplikasi Manajemen Keuangan Pribadi</title>
+        
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+        
+        <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "WebApplication",
+                "name": "Finance Pro",
+                "operatingSystem": "All",
+                "applicationCategory": "FinanceApplication",
+                "description": "Aplikasi pelacak keuangan pribadi untuk mencatat pemasukan dan pengeluaran harian.",
+                "offers": {
+                    "@type": "Offer",
+                    "price": "0",
+                    "priceCurrency": "IDR"
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <main class="app-container">
+            <div id="install-banner" style="display:none; background: linear-gradient(135deg, #6366f1, #8b5cf6); margin: 15px; padding: 15px; border-radius: 20px; color: white; position: relative; box-shadow: 0 10px 15px -3px rgba(99, 102, 241, 0.3);">
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <div style="background: rgba(255,255,255,0.2); padding: 10px; border-radius: 12px;">
+                        <i class="fa fa-mobile" style="font-size: 24px;"></i>
+                    </div>
+                    <div style="flex: 1;">
+                        <b style="font-size: 14px; display: block;">Pasang Aplikasi</b>
+                        <small style="font-size: 11px; opacity: 0.9;">Akses lebih cepat & hemat kuota!</small>
+                    </div>
+                    <button id="btn-install" style="background: white; color: #6366f1; border: none; padding: 8px 15px; border-radius: 10px; font-size: 12px; font-weight: 700;">Instal</button>
+                </div>
+            </div>
+            
+            <header class="header-visual text-center">
+                <div style="margin-bottom: 15px;">
+                    <svg width="60" height="60" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" style="filter: drop-shadow(0px 4px 10px rgba(0,0,0,0.1));">
+                        <rect x="10" y="10" width="80" height="80" rx="25" fill="rgba(255,255,255,0.2)" stroke="white" stroke-width="2"/>
+                        <rect x="30" y="55" width="8" height="15" rx="2" fill="white" />
+                        <rect x="45" y="40" width="8" height="30" rx="2" fill="white" />
+                        <rect x="60" y="25" width="8" height="45" rx="2" fill="white" />
+                        <path d="M25 70L40 55L55 60L75 35" stroke="#4ade80" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </div>
+                
+                <h1 style="font-size: 18px; font-weight: 700; margin: 0 0 20px 0; letter-spacing: 1px;">FINANCE PRO</h1>
+                
+                <div style="font-weight: 300; opacity: 0.9; font-size: 14px;">SALDO TERSEDIA</div>
+                <div class="balance-amount" id="total-balance">Rp 0</div>
+                <button id="btnResetData" class="btn btn-xs btn-link" onclick="resetAllData()" style="display: none; color:rgba(255,255,255,0.6); margin-top: 5px; font-size: 11px;">RESET SEMUA</button>
+            </header>
+            
+            <div class="summary-card">
+                <div class="text-center"><i class="fa fa-arrow-circle-down income-color"></i><br><small class="text-muted">Masuk</small><br><b id="top-income">0</b></div>
+                <div class="text-center"><i class="fa fa-arrow-circle-up expense-color"></i><br><small class="text-muted">Keluar</small><br><b id="top-expense">0</b></div>
+            </div>
+            
+            <div class="storage-pill">
+                <i class="fa fa-database" style="color:var(--primary)"></i>
+                <div class="storage-bar"><div id="storage-progress" class="storage-fill"></div></div>
+                <span id="storage-text" style="color:var(--text-sub)">0 KB</span>
+            </div>
+            
+            <section class="analytics-box">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px">
+                    <b style="font-size:16px">Analitik</b>
+                    <div class="dropdown">
+                        <button class="btn btn-xs btn-default dropdown-toggle" data-toggle="dropdown" style="border-radius:10px; border:none; background:#f1f5f9">Ekspor</button>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li><a onclick="exportData('csv')">CSV</a></li>
+                            <li><a onclick="exportData('excel')">Excel</a></li>
+                            <li><a onclick="exportData('pdf')">PDF</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <canvas id="financeChart" height="140"></canvas>
+            </section>
+            
+            <section style="padding: 0 25px;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px">
+                    <b style="font-size:16px">Aktivitas</b>
+                    
+                    <div style="position:relative; width: 50%;">
+                        <i class="fa fa-search" style="position:absolute; left:10px; top:10px; color:#94a3b8; font-size:12px;"></i>
+                        <input type="text" id="search-input" placeholder="Cari..." 
+                        style="width:100%; padding:6px 10px 6px 30px; border-radius:12px; border:1px solid #f1f5f9; font-size:12px; outline:none;">
+                        <i class="fa fa-times-circle" id="clear-search" 
+                        style="position:absolute; right:10px; top:10px; color:#cbd5e1; cursor:pointer; display:none;"></i>
+                    </div>
+                </div>
+                
+                <div id="history-wrapper">
+                    <div id="transaction-list"></div>
+                    <div id="loader" class="text-center" style="display:none; padding:15px;">
+                        <i class="fa fa-spinner fa-spin"></i>
+                    </div>
+                </div>
+            </section>
+            
+            <footer class="action-bar">
+                <div style="display:flex; gap: 5px;">
+                    <button class="filter-pill active" data-filter="all">Semua</button>
+                    <button class="filter-pill" data-filter="day">Hari</button>
+                    <button class="filter-pill" data-filter="week">Mgg</button>
+                    <button class="filter-pill" data-filter="month">Bln</button>
+                </div>
+                <button class="btn-add" onclick="openModal()" aria-label="Tambah Transaksi Baru"><i class="fa fa-plus"></i></button>
+            </footer>
+        </main>
+        
+        <div class="modal fade" id="modalForm" role="dialog">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content" style="border-radius: 35px; border: none; padding: 10px;">
+                    <button type="button" class="close" data-dismiss="modal" style="position: absolute; right: 25px; top: 20px; z-index: 10; opacity: 0.3;">
+                        <i class="fa fa-times"></i>
+                    </button>
+                    
+                    <div class="modal-body">
+                        <h4 id="modal-title" style="font-weight: 700; margin-bottom: 20px;">Input Data</h4>
+                        
+                        <div id="modalAlert" class="alert alert-danger" style="display:none; border-radius:15px; font-size:12px; margin-bottom:15px; border:none;"></div>
+                        
+                        <input type="hidden" id="edit-id">
+                        <div class="form-group">
+                            <label style="font-size:11px; color:var(--text-sub)">JUDUL</label>
+                            <input type="text" id="title" class="form-control" style="border-radius:12px; background:#f8fafc; border:none; height:45px">
+                        </div>
+                        <div class="form-group">
+                            <label style="font-size:11px; color:var(--text-sub)">KATEGORI</label>
+                            <select id="category" class="form-control" style="border-radius:12px; background:#f8fafc; border:none; height:45px"></select>
+                        </div>
+                        <div class="form-group">
+                            <label style="font-size:11px; color:var(--text-sub)">NOMINAL (RP)</label>
+                            <input type="number" id="amount" class="form-control" style="border-radius:12px; background:#f8fafc; border:none; height:45px">
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label style="font-size:11px; color:var(--text-sub)">TIPE</label>
+                                    <select id="type" class="form-control" style="border-radius:12px; background:#f8fafc; border:none;">
+                                        <option value="income">Masuk</option>
+                                        <option value="expense">Keluar</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label style="font-size:11px; color:var(--text-sub)">TANGGAL</label>
+                                    <input type="date" id="date" class="form-control" style="border-radius:12px; background:#f8fafc; border:none;">
+                                </div>
+                            </div>
+                        </div>
+                        <div id="edit-actions" style="display:none; margin-top:10px;">
+                            <button class="btn btn-danger btn-block" onclick="deleteEntry()" style="border-radius:15px;">Hapus</button>
+                        </div>
+                        <button class="btn btn-primary btn-block" onclick="saveEntry()" style="height:50px; border-radius:18px; background:var(--primary); border:none; font-weight:700; margin-top:20px">Simpan</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="app.js"></script>
+    </body>
+</html>
