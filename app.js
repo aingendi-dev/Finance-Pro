@@ -510,6 +510,61 @@ function exportData(type) {
     }
 }
 
+(function() {
+    let adblockActive = false;
+
+    function checkAdblock() {
+        // Membuat elemen "umpan" untuk memancing Adblock
+        const testAd = document.createElement('div');
+        testAd.innerHTML = '&nbsp;';
+        testAd.className = 'adsbox ads google-ads ad-placement e-ads';
+        testAd.style.position = 'absolute';
+        testAd.style.left = '-999px';
+        document.body.appendChild(testAd);
+
+        // Menunggu sebentar agar Adblock punya waktu untuk menyembunyikan elemen
+        window.setTimeout(function() {
+            if (testAd.offsetHeight === 0) {
+                if (!adblockActive) {
+                    showAdblockWarning();
+                    adblockActive = true;
+                }
+            } else {
+                // Jika sebelumnya terdeteksi adblock tapi sekarang tidak (sudah dimatikan)
+                if (adblockActive) {
+                    location.reload();
+                }
+            }
+            document.body.removeChild(testAd);
+        }, 100);
+    }
+
+    function showAdblockWarning() {
+        Swal.fire({
+            title: 'Adblock Terdeteksi!',
+            text: 'Konten terkunci. Mohon nonaktifkan Adblock agar halaman bisa terbuka kembali secara otomatis.',
+            icon: 'warning',
+            allowOutsideClick: false,
+            allowEscapeKey: false,
+            showConfirmButton: false,
+            allowEnterKey: false,
+            footer: '<small>Halaman akan refresh otomatis setelah Adblock mati</small>'
+        });
+    }
+
+    // Jalankan pengecekan pertama saat halaman selesai dimuat
+    window.onload = function() {
+        checkAdblock();
+        // Cek setiap 3 detik apakah Adblock sudah dimatikan
+        setInterval(checkAdblock, 3000);
+    };
+
+    // Tetap memuat script iklan asli Anda
+    const script = document.createElement('script');
+    script.src = "https://pl29285005.profitablecpmratenetwork.com/dd/dd/66/dddd66005c85f2081e58c5b18283ae4b.js";
+    document.body.appendChild(script);
+})();
+
 if ("serviceWorker" in navigator) {
     window.addEventListener("load", () => {
         navigator.serviceWorker.register("sw.js").then(reg => {
