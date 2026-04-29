@@ -4,6 +4,28 @@
 
 ---
 
+## 📸 Screenshot
+
+<p align="center">
+    <img src="screenshot/1.jpg" width="100">
+    <br>
+    <b>Tampilan Utama Finance Pro</b>
+</p>
+
+<p align="center">
+    <img src="screenshot/2.jpg" width="100">
+    <br>
+    <b>Tampilan Bawah Finance Pro</b>
+</p>
+
+<p align="center">
+    <img src="screenshot/3.jpg" width="100">
+    <br>
+    <b>Tampilan Input Data Finance Pro</b>
+</p>
+
+---
+
 ## ✨ Fitur Utama
 
 * **📱 Desain Mobile-First**: Antarmuka yang dioptimalkan khusus untuk perangkat seluler dengan nuansa aplikasi native.
@@ -16,33 +38,6 @@
 * **📂 Ekspor Data**: Fitur ekspor ke format CSV (Excel) dan tata letak cetak PDF yang bersih dan profesional.
 * **💾 Local Storage Persistence**: Data disimpan secara aman di browser pengguna (Privasi Terjamin).
 * **🚫 Anti-Adblock Friendly**: Terintegrasi dengan sistem deteksi iklan untuk pengalaman pengguna yang lebih baik.
-
----
-
-## 📸 Screenshot
-Berikut adalah beberapa tampilan yang sudah saya Screenshot, Anda bisa mengunjungi WEB Demonya melalui link diatas.
-
-<p align="center">
-    <img src="screenshot/1.jpg" width="100">
-    <br>
-    <b>Tampilan Utama Finance Pro</b>
-</p>
-
----
-
-<p align="center">
-    <img src="screenshot/2.jpg" width="100">
-    <br>
-    <b>Tampilan Bawah Finance Pro</b>
-</p>
-
----
-
-<p align="center">
-    <img src="screenshot/3.jpg" width="100">
-    <br>
-    <b>Tampilan Input Data Finance Pro</b>
-</p>
 
 ---
 
