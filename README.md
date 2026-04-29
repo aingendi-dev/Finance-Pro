@@ -48,7 +48,7 @@
 ### Jalankan Secara Lokal
 1.  Clone repositori ini:
     ```bash
-    git clone https://github.com/aingendi-dev/Finance-Pro.git
+    gh repo clone aingendi-dev/Finance-Pro
     ```
 2.  Buka file `index.html` di browser pilihan Anda.
 
