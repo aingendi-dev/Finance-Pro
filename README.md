@@ -4,6 +4,8 @@
 
 * **Demo**: [https://finance-pro-alpha.vercel.app](https://finance-pro-alpha.vercel.app)
 
+---
+
 ## 📸 Screenshot
 
 <p align="center">
