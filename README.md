@@ -26,7 +26,7 @@
 
 * **📱 Desain Mobile-First**: Antarmuka yang dioptimalkan khusus untuk perangkat seluler dengan nuansa aplikasi native.
 * **🎨 Glassmorphism UI**: Tampilan modern menggunakan efek blur transparan, font Plus Jakarta Sans, dan palet warna yang elegan.
-* **📊 Visualisasi Chart.js**: Grafik donat interaktif untuk melihat proporsi pemasukan vs pengeluaran secara instan.
+* **📊 Visualisasi Chart.js**: Grafik interaktif untuk melihat proporsi pemasukan vs pengeluaran secara instan.
 * **🚀 PWA Ready**: Dapat diinstal di Android dan iOS tanpa melalui App Store. Mendukung instalasi melalui banner kustom.
 * **🔍 Pencarian & Filter Pintar**:
     * Filter cepat berdasarkan periode (Hari ini, Minggu ini, Bulan ini).
