@@ -2,8 +2,6 @@
 
 **Finance Pro** adalah aplikasi pencatat keuangan berbasis web (Progressive Web App) yang dirancang dengan estetika modern, fokus pada penggunaan mobile, dan performa yang ringan. Aplikasi ini memungkinkan pengguna untuk memantau pemasukan dan pengeluaran secara real-time dengan visualisasi data yang interaktif melalui desain Glassmorphism yang mewah.
 
----
-
 ## 📸 Screenshot
 
 <p align="center">
@@ -24,8 +22,6 @@
     <b>Tampilan Input Data Finance Pro</b>
 </p>
 
----
-
 ## ✨ Fitur Utama
 
 * **📱 Desain Mobile-First**: Antarmuka yang dioptimalkan khusus untuk perangkat seluler dengan nuansa aplikasi native.
@@ -39,8 +35,6 @@
 * **💾 Local Storage Persistence**: Data disimpan secara aman di browser pengguna (Privasi Terjamin).
 * **🚫 Anti-Adblock Friendly**: Terintegrasi dengan sistem deteksi iklan untuk pengalaman pengguna yang lebih baik.
 
----
-
 ## 🛠️ Stack Teknologi
 
 * **Frontend**: HTML5, CSS3 (Custom Glassmorphism), Bootstrap 3.4.1.
@@ -48,8 +42,6 @@
 * **Visual**: [Chart.js](https://www.chartjs.org/) untuk analisis grafik.
 * **Ikon & Font**: Font Awesome & Plus Jakarta Sans.
 * **PWA**: Service Workers & Web App Manifest.
-
----
 
 ## 🚀 Instalasi & Deployment
 
@@ -66,21 +58,15 @@ Untuk fitur PWA yang sempurna (HTTPS & Tanpa Redirect Cookie):
 2.  Tarik dan lepaskan folder proyek ke dashboard Vercel.
 3.  Aplikasi Anda akan online dalam hitungan detik.
 
----
-
 ## 📂 Struktur File
 
 * `index.html` - Struktur utama aplikasi dan UI.
-* `manifest.json` - Konfigurasi agar aplikasi dapat diinstal di HP.
+* `site.webmanifest` - Konfigurasi agar aplikasi dapat diinstal di HP.
 * `sw.js` - Service Worker untuk mendukung fungsionalitas PWA.
-* `assets/` - Folder untuk gambar, ikon, dan stylesheet tambahan.
-
----
+* `favicon/` - Folder untuk gambar dan ikon.
 
 ## 📝 Catatan Penggunaan
 Aplikasi ini menggunakan **Local Storage**. Jika Anda menghapus data browser, riwayat transaksi akan ikut terhapus. Gunakan fitur **Ekspor CSV** secara berkala untuk mencadangkan data Anda.
-
----
 
 ## 📄 Lisensi
 Proyek ini dilisensikan di bawah **MIT License**.
