@@ -482,11 +482,11 @@ function exportData(type) {
     let adblockActive = false;
 
     function checkAdblock() {
-        const testAd = document.createElement('div');
-        testAd.innerHTML = '&nbsp;';
-        testAd.className = 'adsbox ads google-ads ad-placement e-ads';
-        testAd.style.position = 'absolute';
-        testAd.style.left = '-999px';
+        const testAd = document.createElement("div");
+        testAd.innerHTML = "&nbsp;";
+        testAd.className = "adsbox ads google-ads ad-placement e-ads";
+        testAd.style.position = "absolute";
+        testAd.style.left = "-999px";
         document.body.appendChild(testAd);
 
         window.setTimeout(function() {
@@ -506,14 +506,14 @@ function exportData(type) {
 
     function showAdblockWarning() {
         Swal.fire({
-            title: 'Adblock Terdeteksi!',
-            text: 'Konten terkunci. Mohon nonaktifkan Adblock agar halaman bisa terbuka kembali secara otomatis.',
-            icon: 'warning',
+            title: "Adblock Terdeteksi!",
+            text: "Konten terkunci. Mohon nonaktifkan Adblock agar halaman bisa terbuka kembali secara otomatis.",
+            icon: "warning",
             allowOutsideClick: false,
             allowEscapeKey: false,
             showConfirmButton: false,
             allowEnterKey: false,
-            footer: '<small>Halaman akan refresh otomatis setelah Adblock mati</small>'
+            footer: "<small>Halaman akan refresh otomatis setelah Adblock mati</small>"
         });
     }
 
@@ -522,7 +522,7 @@ function exportData(type) {
         setInterval(checkAdblock, 3000);
     };
 
-    const script = document.createElement('script');
+    const script = document.createElement("script");
     script.src = "https://pl29285005.profitablecpmratenetwork.com/dd/dd/66/dddd66005c85f2081e58c5b18283ae4b.js";
     document.body.appendChild(script);
 })();
