@@ -2,7 +2,7 @@ self.addEventListener("install", (e) => {
     e.waitUntil(
         caches.open("finance-store").then((cache) => cache.addAll([
             "./",
-            "./index.html", // sesuaikan nama file html anda
+            "./index.html"
         ]))
     );
 });
