@@ -2,6 +2,8 @@
 
 **Finance Pro** adalah aplikasi pencatat keuangan berbasis web (Progressive Web App) yang dirancang dengan estetika modern, fokus pada penggunaan mobile, dan performa yang ringan. Aplikasi ini memungkinkan pengguna untuk memantau pemasukan dan pengeluaran secara real-time dengan visualisasi data yang interaktif melalui desain Glassmorphism yang mewah.
 
+* **Demo**: [https://finance-pro-alpha.vercel.app](https://finance-pro-alpha.vercel.app)
+
 ## 📸 Screenshot
 
 <p align="center">
