@@ -68,6 +68,11 @@ Untuk fitur PWA yang sempurna (HTTPS & Tanpa Redirect Cookie):
 ## 📝 Catatan Penggunaan
 Aplikasi ini menggunakan **Local Storage**. Jika Anda menghapus data browser, riwayat transaksi akan ikut terhapus. Gunakan fitur **Ekspor CSV** secara berkala untuk mencadangkan data Anda.
 
+##  Dukung Saya
+* [Donasi via Saweria](https://saweria.co/kangendi)
+
+Dukungan Anda akan sangat berharga bagi saya, untuk tetap bisa membangun Project menarik lainnya.
+
 ## 📄 Lisensi
 Proyek ini dilisensikan di bawah **MIT License**.
 
