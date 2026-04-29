@@ -1,11 +1,9 @@
 const categoryIcons = {
-    // Kategori Pemasukan
     "Gaji": "fa-money",
     "Bonus": "fa-gift",
     "Investasi": "fa-line-chart",
     "Lainnya (Masuk)": "fa-plus-circle",
     
-    // Kategori Pengeluaran
     "Makanan": "fa-cutlery",
     "Transport": "fa-car",
     "Belanja": "fa-shopping-bag",
@@ -21,7 +19,6 @@ let currentFilter = "all";
 let myChart;
 let deferredPrompt;
 
-// Toast Configuration
 const Toast = Swal.mixin({
     toast: true,
     position: "top",
@@ -35,15 +32,12 @@ const Toast = Swal.mixin({
 });
 
 window.addEventListener("beforeinstallprompt", (e) => {
-    // Mencegah browser menampilkan prompt default otomatis
     e.preventDefault();
-    // Simpan event agar bisa dipicu nanti
     deferredPrompt = e;
-    // Tampilkan banner instalasi kita
+    
     $("#install-banner").fadeIn();
 });
 
-// Deteksi saat aplikasi berhasil terinstal
 window.addEventListener("appinstalled", (evt) => {
     console.log("Finance Pro berhasil diinstal!");
     $("#install-banner").fadeOut();
@@ -77,10 +71,8 @@ $(document).ready(function() {
         renderUI();
     });
     
-    // Tambahkan listener agar kategori berubah saat tipe Masuk/Keluar diganti di modal
     $("#type").on("change", updateCategoryOptions);
     
-    // Kontrol muncul/hilangnya tombol X dan fungsi pencarian
     $("#search-input").on("input", function() {
         const val = $(this).val();
         if (val.length > 0) {
@@ -93,46 +85,38 @@ $(document).ready(function() {
         renderUI();
     });
 
-    // Fungsi saat tombol X diklik
     $("#clear-search").on("click", function() {
-        $("#search-input").val(""); // Kosongkan input
-        $(this).fadeOut(200);       // Sembunyikan tombol X
+        $("#search-input").val("");
+        $(this).fadeOut(200);
         itemsLimit = 10;
-        renderUI();                 // Render ulang semua data
-        $("#search-input").focus(); // Kembalikan fokus ke input
+        renderUI();
+        $("#search-input").focus();
     });
     
-    // Sembunyikan alert saat user mengetik di input judul atau nominal
     $("#title, #amount").on("input", function() {
         $("#modalAlert").fadeOut();
     });
     
-    // Sembunyikan alert saat modal ditutup agar saat dibuka lagi sudah bersih
     $("#modalForm").on("hidden.bs.modal", function () {
         $("#modalAlert").hide();
     });
     
-    // Refresh UI setiap 1 menit agar waktu relatif terupdate otomatis
     setInterval(() => {
         renderUI();
     }, 60000);
     
     $("#btn-install").on("click", async () => {
         if (deferredPrompt) {
-            // Tampilkan prompt instalasi asli browser
             deferredPrompt.prompt();
             
-            // Tunggu respon user
             const { outcome } = await deferredPrompt.userChoice;
             console.log(`User response: ${outcome}`);
             
-            // Sembunyikan banner karena user sudah merespon
             $("#install-banner").fadeOut();
             deferredPrompt = null;
         }
     });
 
-    // Sembunyikan banner jika aplikasi sudah terinstal (Mode Standalone)
     if (window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone === true) {
         $("#install-banner").hide();
     }
@@ -154,7 +138,6 @@ function timeAgo(timestamp) {
     const days = Math.floor(hours / 24);
     if (days < 7) return `${days} hari yang lalu`;
 
-    // Jika lebih dari 7 hari, tampilkan tanggal format biasa
     return past.toLocaleDateString("id-ID", { day: "numeric", month: "short" });
 }
 
@@ -208,7 +191,6 @@ function initChart() {
 function renderUI() {
     let filtered = filterData(transactions);
     
-    // LOGIKA BARU: Sembunyikan/Tampilkan tombol Reset
     if (transactions.length === 0) {
         $("#btnResetData").fadeOut();
     } else {
@@ -240,9 +222,7 @@ function renderUI() {
     
     slice.forEach(t => {
         const isInc = t.type === "income";
-        const iconClass = categoryIcons[t.category] || "fa-tag"; // Default ke fa-tag jika tidak ada
-        
-        // Gunakan fungsi timeAgo dengan input ID transaksi (timestamp)
+        const iconClass = categoryIcons[t.category] || "fa-tag";
         const relativeTime = timeAgo(t.id);
         
         list.append(`<div class="transaction-row" onclick="editEntry('${t.id}')">
@@ -261,12 +241,10 @@ function renderUI() {
 }
 
 function filterData(data) {
-    // Edit bagian ini: Mengurutkan berdasarkan t.id secara descending (terbesar/terbaru ke terkecil)
     let sorted = [...data].sort((a, b) => parseInt(b.id) - parseInt(a.id));
     
     const searchTerm = $("#search-input").val().toLowerCase();
 
-    // Filter berdasarkan Teks Pencarian
     if (searchTerm) {
         sorted = sorted.filter(t => 
             t.title.toLowerCase().includes(searchTerm) || 
@@ -274,7 +252,6 @@ function filterData(data) {
         );
     }
 
-    // Filter berdasarkan Waktu (Filter Pill)
     if (currentFilter === "all") return sorted;
     
     const now = new Date();
@@ -292,7 +269,7 @@ function openModal() {
         $("#modalAlert").addClass("alert-danger");
     }
     
-    $("#modalAlert").hide(); // Tambahkan ini
+    $("#modalAlert").hide();
     $("#modal-title").text("Tambah");
     
     $("#edit-id").val("");
@@ -302,16 +279,13 @@ function openModal() {
     $("#date").val(new Date().toISOString().split("T")[0]);
     $("#edit-actions").hide();
     
-    // LOGIKA BARU: Cek apakah ada pemasukan (income)
     const hasIncome = transactions.some(t => t.type === "income");
     const typeSelect = $("#type");
     
     if (!hasIncome) {
-        // Jika belum ada pemasukan, paksa tipe ke "income" dan disable pilihan
         typeSelect.val("income");
         typeSelect.find("option[value='expense']").attr("disabled", true);
         
-        // Opsional: Beri info ke user
         if ($("#modalAlert").hasClass("alert-danger")) {
             $("#modalAlert").removeClass("alert-danger");
             $("#modalAlert").addClass("alert-info");
@@ -319,16 +293,14 @@ function openModal() {
         
         $("#modalAlert").text("Input pemasukan pertama Anda dulu ya!").fadeIn();
     } else {
-        // Jika sudah ada pemasukan, aktifkan kembali semua pilihan
         typeSelect.find("option[value='expense']").attr("disabled", false);
     }
     
-    updateCategoryOptions(); // Panggil fungsi pengisi kategori
+    updateCategoryOptions();
     
     $("#modalForm").modal("show");
 }
 
-// Fungsi bantu untuk mengubah daftar kategori saat tipe (Masuk/Keluar) diganti
 function updateCategoryOptions() {
     const type = $("#type").val();
     const catSelect = $("#category").empty();
@@ -353,16 +325,15 @@ function saveEntry() {
         title: $("#title").val(),
         amount: parseFloat($("#amount").val()),
         type: $("#type").val(),
-        category: $("#category").val(), // Tambahkan ini
+        category: $("#category").val(),
         date: $("#date").val()
     };
     
-    // VALIDASI BARU: Menggunakan Inline Alert
     if (!entry.title || isNaN(entry.amount) || entry.amount <= 0) {
         let msg = !entry.title ? "Judul tidak boleh kosong" : "Nominal harus lebih dari 0";
         
         $("#modalAlert").text(msg).fadeIn();
-        return; // Berhenti di sini, jangan simpan
+        return;
     }
     
     const idx = transactions.findIndex(t => t.id === entry.id);
@@ -377,7 +348,6 @@ function saveEntry() {
     
     $("#modalForm").modal("hide");
     
-    // Berhasil simpan tetap boleh pakai Toast agar user tahu data masuk
     Toast.fire({
         icon: "success",
         title: "Berhasil disimpan"
@@ -395,15 +365,13 @@ function editEntry(id) {
     $("#type").val(t.type);
     $("#date").val(t.date);
     
-    updateCategoryOptions(); // Isi dulu opsinya
-    $("#category").val(t.category); // Baru set nilainya
+    updateCategoryOptions();
+    $("#category").val(t.category);
     
-    // LOGIKA TAMBAHAN: Cek ketersediaan opsi pengeluaran
     const otherIncomes = transactions.filter(item => item.type === "income" && item.id !== id);
     const typeSelect = $("#type");
     
     if (otherIncomes.length === 0 && t.type === "income") {
-        // Jika ini adalah satu-satunya pemasukan, jangan biarkan diubah jadi pengeluaran
         typeSelect.find("option[value='expense']").attr("disabled", true);
     } else {
         typeSelect.find("option[value='expense']").attr("disabled", false);
@@ -514,7 +482,6 @@ function exportData(type) {
     let adblockActive = false;
 
     function checkAdblock() {
-        // Membuat elemen "umpan" untuk memancing Adblock
         const testAd = document.createElement('div');
         testAd.innerHTML = '&nbsp;';
         testAd.className = 'adsbox ads google-ads ad-placement e-ads';
@@ -522,7 +489,6 @@ function exportData(type) {
         testAd.style.left = '-999px';
         document.body.appendChild(testAd);
 
-        // Menunggu sebentar agar Adblock punya waktu untuk menyembunyikan elemen
         window.setTimeout(function() {
             if (testAd.offsetHeight === 0) {
                 if (!adblockActive) {
@@ -530,7 +496,6 @@ function exportData(type) {
                     adblockActive = true;
                 }
             } else {
-                // Jika sebelumnya terdeteksi adblock tapi sekarang tidak (sudah dimatikan)
                 if (adblockActive) {
                     location.reload();
                 }
@@ -552,14 +517,11 @@ function exportData(type) {
         });
     }
 
-    // Jalankan pengecekan pertama saat halaman selesai dimuat
     window.onload = function() {
         checkAdblock();
-        // Cek setiap 3 detik apakah Adblock sudah dimatikan
         setInterval(checkAdblock, 3000);
     };
 
-    // Tetap memuat script iklan asli Anda
     const script = document.createElement('script');
     script.src = "https://pl29285005.profitablecpmratenetwork.com/dd/dd/66/dddd66005c85f2081e58c5b18283ae4b.js";
     document.body.appendChild(script);

@@ -7,7 +7,6 @@
 
 body {
     font-family: "Plus Jakarta Sans", sans-serif;
-    /* Ganti background #000 menjadi gradasi halus ini */
     background: radial-gradient(circle at center, #f1f5f9 0%, #e2e8f0 100%);
     color: var(--text-main);
     margin: 0;
@@ -17,7 +16,7 @@ body {
 }
 
 input, textarea {
-    user-select: text; /* Tetap izinkan input teks */
+    user-select: text;
 }
 
 .app-container {
@@ -28,7 +27,7 @@ input, textarea {
     position: relative;
     padding-bottom: 110px;
     overflow: hidden;
-    box-shadow: 0 0 100px rgba(0,0,0,0.05); /* Shadow halus untuk desktop */
+    box-shadow: 0 0 100px rgba(0,0,0,0.05);
 }
 
 @media (min-width: 481px) {
@@ -39,7 +38,6 @@ input, textarea {
 }
 
 
-/* Custom SweetAlert Font Size */
 .swal2-popup {
     font-size: 1.6rem !important;
     border-radius: 25px !important;
