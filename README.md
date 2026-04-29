@@ -23,7 +23,7 @@
 Berikut adalah beberapa tampilan yang sudah saya Screenshot, Anda bisa mengunjungi WEB Demonya melalui link diatas.
 
 <p align="center">
-    <img src="screenshot/1.png" width="100">
+    <img src="screenshot/1.jpg" width="100">
     <br>
     <b>Tampilan Utama Finance Pro</b>
 </p>
@@ -31,7 +31,7 @@ Berikut adalah beberapa tampilan yang sudah saya Screenshot, Anda bisa mengunjun
 ---
 
 <p align="center">
-    <img src="screenshot/2.png" width="100">
+    <img src="screenshot/2.jpg" width="100">
     <br>
     <b>Tampilan Bawah Finance Pro</b>
 </p>
@@ -39,7 +39,7 @@ Berikut adalah beberapa tampilan yang sudah saya Screenshot, Anda bisa mengunjun
 ---
 
 <p align="center">
-    <img src="screenshot/3.png" width="100">
+    <img src="screenshot/3.jpg" width="100">
     <br>
     <b>Tampilan Input Data Finance Pro</b>
 </p>
@@ -61,7 +61,7 @@ Berikut adalah beberapa tampilan yang sudah saya Screenshot, Anda bisa mengunjun
 ### Jalankan Secara Lokal
 1.  Clone repositori ini:
     ```bash
-    git clone https://github.com/username/finance-pro.git
+    git clone https://github.com/aingendi-dev/Finance-Pro.git
     ```
 2.  Buka file `index.html` di browser pilihan Anda.
 
