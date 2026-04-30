@@ -459,14 +459,15 @@ function exportData(type) {
         const doc = new jsPDF();
         doc.text("Laporan Keuangan", 14, 15);
         
-        const body = transactions.map(t => [t.date, t.title, t.type, t.amount]);
+        const body = transactions.map(t => [t.date, t.title, t.type, t.category, t.amount]);
         
         doc.autoTable({
             head: [
                 [
-                    "Tgl",
+                    "Tanggal",
                     "Judul",
                     "Tipe",
+                    "Kategori",
                     "Nominal"
                 ]
             ],
