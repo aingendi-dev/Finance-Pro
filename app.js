@@ -522,10 +522,6 @@ function exportData(type) {
         checkAdblock();
         setInterval(checkAdblock, 3000);
     };
-
-    const script = document.createElement("script");
-    script.src = "https://pl29285005.profitablecpmratenetwork.com/dd/dd/66/dddd66005c85f2081e58c5b18283ae4b.js";
-    document.body.appendChild(script);
 })();
 
 if ("serviceWorker" in navigator) {
