@@ -1,2 +1,4 @@
 User-agent: *
 Allow: /
+
+Sitemap: https://finance-pro-alpha.vercel.app/sitemap.xml
